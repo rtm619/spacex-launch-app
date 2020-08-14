@@ -1,17 +1,41 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import './App.css';
 import spaceXApi from './services/spaceX.service';
+import Card from './components/Card';
+import constants from './constants';
+import Filter from './components/Filter';
 
 function App({ data }) {
   return (
     <div className="wrapper">
-      {data.map((item) => (
-        <div className="item" key={item.flight_number}>
-          {item.mission_name}
+      <header><h1>{constants.header}</h1></header>
+      <div className="content-wrapper">
+        <div className="filter-container">
+          <div className="filter">
+            <Filter />
+          </div>
         </div>
-      ))}
+        <div className="card-container">
+          {data.map((item) => (
+            <div className="item" key={item.flightNumber}>
+              <Card
+                flightNumber={item.flightNumber}
+                missionName={item.missionName}
+                missionIds={item.missionIds}
+                launchYear={item.launchYear}
+                launchSuccess={item.launchSuccess}
+                landSuccess={item.landSuccess}
+                missionPatch={item.missionPatch}
+                articleLink={item.articleLink}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+      <footer><h2>{`${constants.footer} ${process.env.REACT_APP_DEVELOPER}`}</h2></footer>
     </div>
   );
 }
@@ -25,4 +49,6 @@ App.getSSRProps = async (query) => {
   return data;
 };
 
-export default App;
+export default connect((state) => ({
+  data: state.spaceXReducer.data,
+}))(App);

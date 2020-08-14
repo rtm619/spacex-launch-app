@@ -9,17 +9,19 @@ import convertToQS from '../utils/querystring';
 const organizeData = (data = []) => data.map((item) => {
   let landSuccess = item.rocket.first_stage.cores[0].land_success || false;
   if (item.rocket.first_stage.cores.length > 1) {
-    landSuccess = item.rocket.first_stage.cores.find((core) => core.land_success === true) || false;
+    landSuccess = item.rocket.first_stage.cores.findIndex(
+      (core) => core.land_success === true,
+    ) > -1;
   }
   return {
-    flight_number: item.flight_number,
-    mission_name: item.mission_name,
-    mission_ids: item.mission_ids,
-    launch_year: item.launch_year,
-    launch_success: item.launch_success,
-    land_success: landSuccess,
-    mission_patch: item.links.mission_patch,
-    article_link: item.links.article_link,
+    flightNumber: item.flight_number,
+    missionName: item.mission_name,
+    missionIds: item.mission_ids,
+    launchYear: item.launch_year,
+    launchSuccess: item.launch_success || false,
+    landSuccess,
+    missionPatch: item.links.mission_patch_small,
+    articleLink: item.links.article_link,
   };
 });
 

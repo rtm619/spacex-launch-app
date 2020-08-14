@@ -1,0 +1,40 @@
+.filter-heading {
+  font-size: 1.5rem;
+  font-weight: 700;
+  width: 100%;
+  margin: 0;
+}
+.filter-items-wrapper, .filter-items {
+  display: flex;
+  flex-wrap: wrap;
+}
+.filter-items {
+  padding: 0 10px;
+  width: 100%;
+}
+.filter-title {
+  text-align: center;
+  font-size: 1rem;
+  width: 100%;
+  margin: 0;
+  font-weight: 400;
+}
+.filter-items-wrapper hr {
+  width: 75%;
+  height: 1.5px;
+  background-color: lightgrey;
+  border: none;
+  display: block;
+  margin: 0 auto;
+}
+.filter-items li {
+  width: 50%;
+  list-style: none;
+  padding: 5px 0;
+}
+.filter-items li:nth-child(2n + 1) button {
+  margin-right: auto;
+}
+.filter-items li:nth-child(2n) button {
+  margin-left: auto;
+}
