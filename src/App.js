@@ -1,26 +1,28 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import PropTypes from 'prop-types';
 
-function App() {
+import './App.css';
+import spaceXApi from './services/spaceX.service';
+
+function App({ data }) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="wrapper">
+      {data.map((item) => (
+        <div className="item" key={item.flight_number}>
+          {item.mission_name}
+        </div>
+      ))}
     </div>
   );
 }
+
+App.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
+
+App.getSSRProps = async (query) => {
+  const data = await spaceXApi(query);
+  return data;
+};
 
 export default App;
