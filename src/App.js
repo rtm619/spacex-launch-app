@@ -7,37 +7,46 @@ import spaceXApi from './services/spaceX.service';
 import Card from './components/Card';
 import constants from './constants';
 import Filter from './components/Filter';
+import Metadata from './components/Metadata';
 
 function App({ data }) {
   return (
-    <div className="wrapper">
-      <header><h1>{constants.header}</h1></header>
-      <div className="content-wrapper">
-        <div className="filter-container">
-          <div className="filter">
-            <Filter />
+    <>
+      <Metadata
+        pageTitle={constants.pageTitle}
+        metaTitle={constants.metaTitle}
+        metaDescription={constants.metaDescription}
+        metaKeywords={constants.metaKeywords}
+      />
+      <div className="wrapper">
+        <header><h1>{constants.header}</h1></header>
+        <div className="content-wrapper">
+          <div className="filter-container">
+            <div className="filter">
+              <Filter />
+            </div>
+          </div>
+          <div className="card-container">
+            {data.map((item, index) => (
+              <div className="item" key={item.flightNumber}>
+                <Card
+                  flightNumber={item.flightNumber}
+                  missionName={item.missionName}
+                  missionIds={item.missionIds}
+                  launchYear={item.launchYear}
+                  launchSuccess={item.launchSuccess}
+                  landSuccess={item.landSuccess}
+                  missionPatch={item.missionPatch}
+                  articleLink={item.articleLink}
+                  lazyLoad={index > 7}
+                />
+              </div>
+            ))}
           </div>
         </div>
-        <div className="card-container">
-          {data.map((item, index) => (
-            <div className="item" key={item.flightNumber}>
-              <Card
-                flightNumber={item.flightNumber}
-                missionName={item.missionName}
-                missionIds={item.missionIds}
-                launchYear={item.launchYear}
-                launchSuccess={item.launchSuccess}
-                landSuccess={item.landSuccess}
-                missionPatch={item.missionPatch}
-                articleLink={item.articleLink}
-                lazyLoad={index > 7}
-              />
-            </div>
-          ))}
-        </div>
+        <footer><h2>{`${constants.footer} ${process.env.REACT_APP_DEVELOPER}`}</h2></footer>
       </div>
-      <footer><h2>{`${constants.footer} ${process.env.REACT_APP_DEVELOPER}`}</h2></footer>
-    </div>
+    </>
   );
 }
 
