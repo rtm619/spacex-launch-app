@@ -1,1 +1,1 @@
-web: npm run poststart
+web: npm run start
