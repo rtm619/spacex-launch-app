@@ -3,7 +3,10 @@ header h1, footer h2 {
   font-weight: 700;
   width: 100%;
 }
-footer {
+header, footer, .filter-container, .card-container {
+  width: 100%;
+}
+footer h2 {
   text-align: center;
 }
 .wrapper {
@@ -20,9 +23,6 @@ footer {
 .content-wrapper, .card-container {
   display: flex;
   flex-wrap: wrap;
-}
-.filter-container, .card-container {
-  width: 100%;
 }
 .filter {
   margin: 5px;

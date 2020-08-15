@@ -18,7 +18,9 @@
     "ignore-styles": "^5.0.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
+    "react-app-polyfill": "^1.0.6",
     "react-dom": "^16.13.1",
+    "react-lazyload": "^3.0.0",
     "react-redux": "^7.2.1",
     "react-scripts": "3.4.3",
     "redux": "^4.0.5"
@@ -40,7 +42,8 @@
     "production": [
       ">0.2%",
       "not dead",
-      "not op_mini all"
+      "not op_mini all",
+      "ie 11"
     ],
     "development": [
       "last 1 chrome version",

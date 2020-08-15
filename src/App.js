@@ -19,7 +19,7 @@ function App({ data }) {
           </div>
         </div>
         <div className="card-container">
-          {data.map((item) => (
+          {data.map((item, index) => (
             <div className="item" key={item.flightNumber}>
               <Card
                 flightNumber={item.flightNumber}
@@ -30,6 +30,7 @@ function App({ data }) {
                 landSuccess={item.landSuccess}
                 missionPatch={item.missionPatch}
                 articleLink={item.articleLink}
+                lazyLoad={index > 7}
               />
             </div>
           ))}

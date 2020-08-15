@@ -1,5 +1,4 @@
 export default (object = {}) => {
-  const allKeys = Object.keys(object);
-  const queryStringArray = Object.values(object).map((value, index) => `${allKeys[index]}=${value}`);
+  const queryStringArray = Object.keys(object).map((key) => `${key}=${object[key]}`);
   return queryStringArray.join('&');
 };
