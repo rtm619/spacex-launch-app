@@ -8,6 +8,7 @@ import React from 'react';
 import { Provider as ReduxProvider } from 'react-redux';
 import express from 'express';
 import ReactDOMServer from 'react-dom/server';
+import Helmet from 'react-helmet';
 import compression from 'compression';
 
 import App from '../src/App';
@@ -19,6 +20,12 @@ const PORT = process.env.PORT || process.env.$PORT || 3300;
 const app = express();
 
 app.use(compression());
+
+/*
+  Normally, utility functions are generated in order to reuse the React SSR generation logic.
+  However, since this App only has one route, it was easier to add everything in one place to
+  speed build it.
+*/
 
 app.get('/', (req, res) => {
   // Get the filter details from the query params
@@ -45,10 +52,13 @@ app.get('/', (req, res) => {
       </ReduxProvider>,
     );
     // Add the same props data for react hydration in client.
-    const htmlwithData = html.replace(
+    let htmlwithData = html.replace(
       '<script>window.__REACT_INITIAL_PROPS</script>',
       `<script>window.__REACT_INITIAL_PROPS=${JSON.stringify({ data, filters })}</script>`,
     );
+    // Get Metadata
+    const helmetData = Helmet.renderStatic();
+    htmlwithData = htmlwithData.replace('__REACT_HELMET_METADATA__', `${helmetData.title.toString()}${helmetData.meta.toString()}`);
     return res.send(
       // Attach App string in DOM body.
       htmlwithData.replace('<div id="root"></div>', `<div id="root">${stringifiedApp}</div>`),
@@ -59,6 +69,9 @@ app.get('/', (req, res) => {
 // Serve build folder so that the HTML can successfully make calls to
 // static files like JS, CSS, etc.
 app.use(express.static('./build'));
+
+// Redirect all other routes to root.
+app.all('*', (req, res) => res.redirect('/'));
 
 app.listen(PORT, () => {
   console.info(`Server is listening on port ${PORT}`);

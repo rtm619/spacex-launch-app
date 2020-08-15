@@ -18,6 +18,12 @@ const Card = ({
   lazyLoad,
 }) => {
   const image = <img alt={missionName} src={convertToCDN(missionPatch)} className="card-image" />;
+  const cardItem = (key, value) => (
+    <div className="card-item">
+      <span>{`${key}:`}</span>
+      <span>{value}</span>
+    </div>
+  );
   return (
     <div className="card-wrapper">
       {lazyLoad ? (
@@ -39,18 +45,9 @@ const Card = ({
             ))}
           </ul>
         </div>
-        <div className="card-item">
-          <span>{`${constants.launch_year}:`}</span>
-          <span>{launchYear}</span>
-        </div>
-        <div className="card-item">
-          <span>{`${constants.launch_success}:`}</span>
-          <span>{String(launchSuccess)}</span>
-        </div>
-        <div className="card-item">
-          <span>{`${constants.land_success}:`}</span>
-          <span>{String(landSuccess)}</span>
-        </div>
+        {cardItem(constants.launch_year, launchYear)}
+        {cardItem(constants.launch_success, String(launchSuccess))}
+        {cardItem(constants.land_success, String(landSuccess))}
       </div>
     </div>
   );
