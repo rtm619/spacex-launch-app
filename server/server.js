@@ -58,7 +58,7 @@ app.get('/', (req, res) => {
     );
     // Get Metadata
     const helmetData = Helmet.renderStatic();
-    htmlwithData = htmlwithData.replace('__REACT_HELMET_METADATA__', `${helmetData.title.toString()}${helmetData.meta.toString()}`);
+    htmlwithData = htmlwithData.replace('</head>', `${helmetData.title.toString()}${helmetData.meta.toString()}</head>`);
     return res.send(
       // Attach App string in DOM body.
       htmlwithData.replace('<div id="root"></div>', `<div id="root">${stringifiedApp}</div>`),

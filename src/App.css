@@ -37,6 +37,10 @@ footer h2 {
   .filter-container {
     width: 33.33%;
   }
+  .filter {
+    position: sticky;
+    top: 0;
+  }
   .card-container {
     width: 66.67%;
   }
