@@ -6,7 +6,7 @@ import './App.css';
 import spaceXApi from './services/spaceX.service';
 import Card from './components/Card';
 import constants from './constants';
-import Filter from './components/Filter';
+import FilterComponent from './components/Filter';
 import Metadata from './components/Metadata';
 
 function App({ data }) {
@@ -23,7 +23,7 @@ function App({ data }) {
         <div className="content-wrapper">
           <div className="filter-container">
             <div className="filter">
-              <Filter />
+              <FilterComponent />
             </div>
           </div>
           <div className="card-container">

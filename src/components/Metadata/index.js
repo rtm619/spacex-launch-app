@@ -8,8 +8,8 @@ const Metadata = ({
   <Helmet>
     <title>{pageTitle}</title>
     <meta name="title" content={metaTitle} />
-    <meta name="description" content={metaDescription} />
-    <meta name="keywords" content={metaKeywords} />
+    {metaDescription && <meta name="description" content={metaDescription} />}
+    {metaKeywords && <meta name="keywords" content={metaKeywords} />}
   </Helmet>
 );
 
