@@ -1,7 +1,8 @@
 {
   "name": "spacex-launch-app",
   "version": "0.1.0",
-  "private": true,
+  "main": "server",
+  "author": "Reetam Chatterjee",
   "dependencies": {
     "@babel/polyfill": "^7.10.4",
     "@babel/register": "^7.10.5",
@@ -21,7 +22,8 @@
   },
   "scripts": {
     "dev": "react-scripts start",
-    "start": "npm run build && node server",
+    "start": "npm run build",
+    "poststart": "node server",
     "prebuild": "npm run eslint",
     "eslint": "eslint ./src",
     "eslint:fix": "eslint ./src --fix",
