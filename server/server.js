@@ -8,6 +8,7 @@ import React from 'react';
 import { Provider as ReduxProvider } from 'react-redux';
 import express from 'express';
 import ReactDOMServer from 'react-dom/server';
+import compression from 'compression';
 
 import App from '../src/App';
 import configureStore from '../src/store/index.store';
@@ -16,6 +17,8 @@ dotenv.config();
 
 const PORT = process.env.PORT || process.env.$PORT || 3300;
 const app = express();
+
+app.use(compression());
 
 app.get('/', (req, res) => {
   // Get the filter details from the query params

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import './Card.css';
+import convertToCDN from '../../utils/cdn';
 import constants from '../../constants';
 
 const Card = ({
@@ -15,7 +16,7 @@ const Card = ({
   articleLink,
 }) => (
   <div className="card-wrapper">
-    <img alt={missionName} src={missionPatch} className="card-image" />
+    <img alt={missionName} src={convertToCDN(missionPatch)} className="card-image" />
     <div className="card-content">
       <a className="card-title" target="_blank" rel="noopener noreferrer" href={articleLink}>
         {`${missionName} #${flightNumber}`}
