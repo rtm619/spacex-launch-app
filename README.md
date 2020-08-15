@@ -1,68 +1,29 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# SpaceX Mission Launch Details App
 
-## Available Scripts
+This app provides an User Interface for SpaceX Mission Launches. 
+It allows the user to see all SpaceX Missions and the user can filter the missions by Year, Launch Success and Landing Success.
+The App is built on React with a custom SSR server for Production.
 
-In the project directory, you can run:
+## Instructions
+To run the Dev server, run `npm run dev` on your CLI. 
+The Dev server relies on a static data for its first mount, therefore we have taken the initial props from an API call to our SpaceX service.
 
-### `npm start`
+To run the Production server, run `npm start` on your CLI.
+The react app is first built based on production configuration(`react-scripts build`) and then we start our server.
+If a port is not specified, it will be opened by default on port 3300.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Approach
+The approach to build the app was based on minimal use of third-party libraries, for eg., usage of Web APIs to handle client-side url changes instead of using a third-party package like `react-router-dom`. Since the app doesn't have any conditional rendering requirements, dynamic imports were not used, thus also removing the requirement for adding CSS Modules for code-optimization. Pure CSS styling was used, in order to generate responsive design.
+The SSR mode was created only for production deployments with a custom server, while the dev mode would still use CRA's own webpack-dev-server.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+## Folder Structure
+`src` - Holds Client side js files (Similar to CRA).
+`server` - Holds custom server for SSR deployments.
+`.env` - For setting environment values.
+`src/actions` - For keeping all Reducer Actions and their constants like action types.
+`src/components` - For keeping all React components.
+`src/constants` - For keeping any hard-coded app constants.
+`src/reducers` - For keeping all reducers of the app.
+`src/services` - For keeping all API services used by the app.
+`src/store` - For keeping Redux store configuration file.
+`src/utils` - For keeping any utility files for the app.

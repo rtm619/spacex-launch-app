@@ -1,0 +1,15 @@
+.filter-btn {
+  display: block;
+  background-color: rgba(109, 176, 51, 0.5);
+  padding: 5px 20px;
+  border: 1px solid lightgreen;
+  border-radius: 5px;
+}
+.filter-btn:hover {
+  cursor: pointer;
+}
+.filter-btn:disabled {
+  color: black;
+  cursor: not-allowed;
+  background-color: rgb(109, 176, 51);
+}
