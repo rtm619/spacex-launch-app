@@ -10,26 +10,27 @@ import spaceXApi from '../../services/spaceX.service';
 import convertToQS from '../../utils/querystring';
 import './Filter.css';
 
-const Filter = ({ filters, dispatch }) => {
+// To test Component without Redux HOC.
+export const Filter = ({ filters, dispatch }) => {
   const setReducerData = async (filterObject = {}) => {
     const data = await spaceXApi(filterObject);
     dispatch(setData(data));
     window.history.pushState('/', '/', `/?${convertToQS(filterObject)}`);
   };
-  const applyFilter = (event) => {
+  const applyFilter = async (event) => {
     const { name, value } = event.target;
     dispatch(setFilter(name, value));
     const filterObject = {
       ...filters,
       [name]: value,
     };
-    setReducerData(filterObject);
+    await setReducerData(filterObject);
   };
   return (
     <>
-      <h3 className="filter-heading">
+      <h2 className="filter-heading">
         {constants.filters}
-      </h3>
+      </h2>
       {Object.keys(filterConstants).map((filterId) => (
         <div key={filterId} className="filter-items-wrapper">
           <h4 className="filter-title">{constants[filterId]}</h4>

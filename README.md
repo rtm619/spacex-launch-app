@@ -27,3 +27,7 @@ The SSR mode was created only for production deployments with a custom server, w
 `src/services` - For keeping all API services used by the app.
 `src/store` - For keeping Redux store configuration file.
 `src/utils` - For keeping any utility files for the app.
+
+## Extras
+1. An npm `prebuild` hook has been used to make sure the production code has no lint errors or test case fails, before it is built.
+2. Incorporation of `react-helmet` with SSR.
