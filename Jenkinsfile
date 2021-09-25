@@ -2,19 +2,27 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('Install') {
             steps {
-                echo 'Building..'
+                echo 'Installing NPM packages'
+                sh 'npm install'
             }
         }
-        stage('Test') {
+        stage('Build') {
             steps {
-                echo 'Testing..'
+                echo 'Building the application'
+                sh 'npm run build'
+            }
+        }
+        stage('Test Coverage') {
+            steps {
+                echo 'Running test coverage'
+                sh 'npm run test:coverage'
             }
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying....'
+                echo 'Deploying app'
             }
         }
     }
